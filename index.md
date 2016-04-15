@@ -78,7 +78,7 @@ Format code using `standard-format`. Response with a the transformed code in the
 
 Payload:
 ```js
-{ "text": "console.log('woot');\n"}
+{ "text": "console.log('hello');\n"}
 ```
 
 Response:
