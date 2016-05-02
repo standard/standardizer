@@ -5,9 +5,19 @@ var restify = require('restify')
 var standard = require('standard')
 var standardFormat = require('standard-format')
 
-var standardVersion = require('./node_modules/standard/package.json').version
-var standardFormatVersion = require('./node_modules/standard-format/package.json').version
-var standardizerVersion = require('./package.json').version
+var stdPkg = require('standard/package.json')
+var versions = {
+  'standardizer': require('./package.json').version,
+  'standard-format': require('standard-format/package.json').version,
+  'standard': stdPkg.version
+}
+
+Object.keys(stdPkg.dependencies).forEach(function (dep) {
+  versions[dep] = require(`${dep}/package.json`).version
+})
+
+var indexPath = path.join(__dirname, 'index.md')
+var index = marky(fs.readFileSync(indexPath, 'utf8'), {sanitize: false}).html()
 
 module.exports = createServer
 
@@ -28,11 +38,7 @@ function createServer () {
 }
 
 function version (req, res, next) {
-  res.send({
-    'version': standardizerVersion,
-    'standard': standardVersion,
-    'standard-format': standardFormatVersion
-  })
+  res.send(versions)
   next()
 }
 
@@ -60,11 +66,8 @@ function format (req, res, next) {
 }
 
 function sendIndex (req, res, next) {
-  fs.readFile(path.join(__dirname, 'index.md'), 'utf8', function (err, data) {
-    if (err) return next(err)
-    res.setHeader('Content-Type', 'text/html')
-    res.writeHead(200)
-    res.end(marky(data, {sanitize: false}).html())
-    next()
-  })
+  res.setHeader('Content-Type', 'text/html')
+  res.writeHead(200)
+  res.end(index)
+  next()
 }

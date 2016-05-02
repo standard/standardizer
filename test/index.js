@@ -21,7 +21,7 @@ test('get version info', (t) => {
   client.get('/version', (err, req, res, obj) => {
     t.error(err)
 
-    t.ok(obj['version'], 'app version returned')
+    t.ok(obj['standardizer'], 'standardizer version returned')
     t.ok(obj.standard, 'standard version returned')
     t.ok(obj['standard-format'], 'standard-format version returned')
 
