@@ -26,7 +26,7 @@ Returns the current verison of this service as well as the `standard` and `stand
 
 Response:
 ```js
-{"version":"1.0.0","standard":"6.0.8","standard-format":"2.1.1"}
+{"version":"1.0.0","standard":"8.0.0","standard-format":"2.2.3"}
 ```
 
 
@@ -73,8 +73,34 @@ Response:
 }
 ```
 
+### POST /fix
+Lint code using `standard` and include the `--fix` flag. Responds with the untouched JSON response from `standard.lintText`. Only lint errors that were not `fix`'d will be listed. The reformatted code will be at `results[0].output`
+
+Payload:
+```js
+{ "text": "console.log('hello');\n"}
+```
+
+Response:
+```js
+{
+    "results": [
+        {
+            "filePath": "<text>",
+            "messages": [],
+            "errorCount": 0,
+            "warningCount": 0,
+            "output": "console.log('hello')\n"
+        }
+    ],
+    "errorCount": 0,
+    "warningCount": 0
+}
+```
+
+
 ### POST /format
-Format code using `standard-format`. Response with a the transformed code in the `text` field.
+Format code using `standard-format`. Responds with the transformed code in the `text` field.
 
 Payload:
 ```js

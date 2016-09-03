@@ -30,6 +30,7 @@ function createServer () {
   server.pre(restify.pre.userAgentConnection())
   server.get('/version', version)
   server.post('/lint', lint)
+  server.post('/fix', fix)
   server.post('/format', format)
   server.post('/post', format)
   server.get('/', sendIndex)
@@ -48,6 +49,19 @@ function lint (req, res, next) {
   }
 
   standard.lintText(req.body.text, (err, result) => {
+    if (err) return next(err)
+
+    res.send(result)
+    next()
+  })
+}
+
+function fix (req, res, next) {
+  if (!req.body || !req.body.text) {
+    return next(new restify.errors.BadRequestError('text field is required.'))
+  }
+
+  standard.lintText(req.body.text, {fix: true}, (err, result) => {
     if (err) return next(err)
 
     res.send(result)
