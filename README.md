@@ -10,8 +10,7 @@
 
 A tiny service to lint and format JavaScript code using JavaScript Standard Style.
 
-Try it out at:
-
+Try it out at: https://standardizer.glitch.me/
 
 ## Contributing
 

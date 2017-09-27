@@ -3,12 +3,17 @@ var Remarkable = require('remarkable')
 var path = require('path')
 var restify = require('restify')
 var standard = require('standard')
-var standardFormat = require('standard-format')
+var restifyErrors = require('restify-errors')
+
+const corsMiddleware = require('restify-cors-middleware')
+
+const cors = corsMiddleware({
+  origins: ['*']
+})
 
 var stdPkg = require('standard/package.json')
 var versions = {
   'standardizer': require('./package.json').version,
-  'standard-format': require('standard-format/package.json').version,
   'standard': stdPkg.version
 }
 
@@ -26,15 +31,14 @@ module.exports = createServer
 function createServer () {
   var server = restify.createServer()
   server.name = 'standardizer'
-  server.use(restify.bodyParser())
-  server.use(restify.CORS())
+  server.use(restify.plugins.bodyParser({mapParams: true}))
+  server.pre(cors.preflight)
+  server.use(cors.actual)
 
   server.pre(restify.pre.userAgentConnection())
   server.get('/version', version)
   server.post('/lint', lint)
   server.post('/fix', fix)
-  server.post('/format', format)
-  server.post('/post', format)
   server.get('/', sendIndex)
 
   return server
@@ -47,7 +51,7 @@ function version (req, res, next) {
 
 function lint (req, res, next) {
   if (!req.body || !req.body.text) {
-    return next(new restify.errors.BadRequestError('text field is required.'))
+    return next(new restifyErrors.BadRequestError('text field is required.'))
   }
 
   standard.lintText(req.body.text, (err, result) => {
@@ -60,7 +64,7 @@ function lint (req, res, next) {
 
 function fix (req, res, next) {
   if (!req.body || !req.body.text) {
-    return next(new restify.errors.BadRequestError('text field is required.'))
+    return next(new restifyErrors.BadRequestError('text field is required.'))
   }
 
   standard.lintText(req.body.text, {fix: true}, (err, result) => {
@@ -69,16 +73,6 @@ function fix (req, res, next) {
     res.send(result)
     next()
   })
-}
-
-function format (req, res, next) {
-  if (!req.body || !req.body.text) {
-    return next(new restify.errors.BadRequestError('text field is required.'))
-  }
-
-  var result = {text: standardFormat.transform(req.body.text)}
-  res.send(result)
-  next()
 }
 
 function sendIndex (req, res, next) {

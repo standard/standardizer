@@ -1,5 +1,7 @@
 var portfinder = require('portfinder')
-var restify = require('restify')
+
+var clients = require('restify-clients')
+
 var createServer = require('../server.js')
 var test = require('tape')
 
@@ -10,7 +12,9 @@ test('setup server and client', function (t) {
   portfinder.getPort((err, port) => {
     t.error(err)
     server.listen(port, function () {
-      client = restify.createJsonClient(server.url)
+      client = clients.createJsonClient({
+        url: server.url
+      })
       t.ok(server.url, 'server started')
       t.end()
     })
