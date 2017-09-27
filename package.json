@@ -1,6 +1,6 @@
 {
   "name": "standardizer",
-  "description": "A tiny service to lint and format JavaScript code using JavaScript Standard Style.",
+  "description": "A tiny service to lint and fix JavaScript code using JavaScript Standard Style.",
   "version": "2.0.0",
   "author": "Dan Flettre <flettre@gmail.com>",
   "bugs": {

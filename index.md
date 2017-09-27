@@ -31,7 +31,7 @@ Returns the current verison of this service as well as the `standard` and `stand
 
 Response:
 ```js
-{"version":"1.0.0","standard":"8.0.0","standard-format":"2.2.3"}
+{"version":"1.0.0","standard":"10.0.3"}
 ```
 
 

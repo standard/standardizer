@@ -8,7 +8,7 @@
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
 
-A tiny service to lint and format JavaScript code using JavaScript Standard Style.
+A tiny service to lint and fix JavaScript code using JavaScript Standard Style.
 
 Try it out at: https://standardizer.glitch.me/
 
