@@ -9,6 +9,7 @@ h2, h3, h4 {
 }
 </style>
 
+<div style="max-width: 1000px; margin: auto">
 <h1 align="center">
   <br>
   <a href="http://standardjs.com"><img src="https://cdn.rawgit.com/feross/standard/master/sticker.svg" alt="Standard" width="200"></a>
@@ -22,6 +23,10 @@ A tiny service to lint and format JavaScript code using JavaScript Standard Styl
 ### GET /version
 Returns the current verison of this service as well as the `standard` and `standard-format` versions its using.
 
+<form method="get" action="/version">
+<input type="submit" value="Try GET /version">
+</form>
+
 **GET https://<script>document.write(window.location.hostname)</script>/version**
 
 Response:
@@ -32,6 +37,13 @@ Response:
 
 ### POST /lint
 Lint code using `standard`. Responds with the untouched JSON response from `standard.lintText`.
+
+<form method="post" action="/lint">
+<textarea name="text" style="width: 100%">
+console.log('woot');
+</textarea>
+<input type="submit" value="Try POST /lint">
+</form>
 
 **POST https://<script>document.write(window.location.hostname)</script>/lint**
 
@@ -76,6 +88,15 @@ Response:
 ### POST /fix
 Lint code using `standard` and include the `--fix` flag. Responds with the untouched JSON response from `standard.lintText`. Only lint errors that were not `fix`'d will be listed. The reformatted code will be at `results[0].output`
 
+<form method="post" action="/fix">
+<textarea name="text" style="width: 100%">
+console.log('hello');
+
+</textarea>
+<input type="submit" value="Try POST /fix">
+
+</form>
+
 Payload:
 ```js
 { "text": "console.log('hello');\n"}
@@ -97,19 +118,4 @@ Response:
     "warningCount": 0
 }
 ```
-
-
-### POST /format
-Format code using `standard-format`. Responds with the transformed code in the `text` field.
-
-Payload:
-```js
-{ "text": "console.log('hello');\n"}
-```
-
-Response:
-```js
-{
-    "text": "console.log('hello')\n"
-}
-```
+</div>
