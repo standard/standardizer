@@ -2,7 +2,7 @@
   "name": "standardizer",
   "description": "A tiny service to lint and format JavaScript code using JavaScript Standard Style.",
   "version": "2.0.0",
-  "author": "Dan Flettre <fletd01@yahoo.com>",
+  "author": "Dan Flettre <flettre@gmail.com>",
   "bugs": {
     "url": "https://github.com/Flet/standardizer/issues"
   },
