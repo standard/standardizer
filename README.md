@@ -19,7 +19,3 @@ Contributions welcome! Please read the [contributing guidelines](CONTRIBUTING.md
 ## License
 
 [ISC](LICENSE)
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/wzCaAcbsDFWQJ9HFtnWWSHsH/Flet/standardizer'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/wzCaAcbsDFWQJ9HFtnWWSHsH/Flet/standardizer.svg' />
-</a>
