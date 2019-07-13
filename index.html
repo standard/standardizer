@@ -1,0 +1,99 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<style>
+body {
+  padding: 0 20px;
+}
+h2, h3, h4 {
+ padding-top: 20px
+}
+</style>
+<div style="max-width: 1000px; margin: auto">
+<h1 align="center">
+  <br>
+  <a href="http://standardjs.com"><img src="https://cdn.rawgit.com/feross/standard/master/sticker.svg" alt="Standard" width="200"></a>
+  <br>
+  Standardizer
+</h1>
+<p align="center">
+A tiny service to lint and format JavaScript code using JavaScript Standard Style.
+</p>
+<h3>GET /version</h3>
+<p>Returns the current verison of this service as well as the <code>standard</code> and <code>standard-format</code> versions its using.</p>
+<form method="get" action="/version">
+<input type="submit" value="Try GET /version">
+</form>
+<p><strong>GET https://<script>document.write(window.location.hostname)</script>/version</strong></p>
+<p>Response:</p>
+<pre><code class="language-js">{&quot;version&quot;:&quot;1.0.0&quot;,&quot;standard&quot;:&quot;10.0.3&quot;}
+</code></pre>
+<h3>POST /lint</h3>
+<p>Lint code using <code>standard</code>. Responds with the untouched JSON response from <code>standard.lintText</code>.</p>
+<form method="post" action="/lint">
+<textarea name="text" style="width: 100%">
+console.log('woot');
+</textarea>
+<input type="submit" value="Try POST /lint">
+</form>
+<p><strong>POST https://<script>document.write(window.location.hostname)</script>/lint</strong></p>
+<p>Payload:</p>
+<pre><code class="language-js">{ &quot;text&quot;: &quot;console.log('woot');\n&quot;}
+</code></pre>
+<p>Response:</p>
+<pre><code class="language-js">{
+  'results': [
+    {
+      'filePath': '&lt;text&gt;',
+      'messages': [
+        {
+          'ruleId': 'semi',
+          'severity': 2,
+          'message': 'Extra semicolon.',
+          'line': 1,
+          'column': 21,
+          'nodeType': 'ExpressionStatement',
+          'source': &quot;console.log('hello');&quot;,
+          'fix': {
+            'range': [
+              20,
+              21
+            ],
+            'text': ''
+          }
+        }
+      ],
+      'errorCount': 1,
+      'warningCount': 0
+    }
+  ],
+  'errorCount': 1,
+  'warningCount': 0
+}
+</code></pre>
+<h3>POST /fix</h3>
+<p>Lint code using <code>standard</code> and include the <code>--fix</code> flag. Responds with the untouched JSON response from <code>standard.lintText</code>. Only lint errors that were not <code>fix</code>'d will be listed. The reformatted code will be at <code>results[0].output</code></p>
+<form method="post" action="/fix">
+<textarea name="text" style="width: 100%">
+console.log('hello');
+</textarea>
+<input type="submit" value="Try POST /fix">
+</form>
+<p>Payload:</p>
+<pre><code class="language-js">{ &quot;text&quot;: &quot;console.log('hello');\n&quot;}
+</code></pre>
+<p>Response:</p>
+<pre><code class="language-js">{
+    &quot;results&quot;: [
+        {
+            &quot;filePath&quot;: &quot;&lt;text&gt;&quot;,
+            &quot;messages&quot;: [],
+            &quot;errorCount&quot;: 0,
+            &quot;warningCount&quot;: 0,
+            &quot;output&quot;: &quot;console.log('hello')\n&quot;
+        }
+    ],
+    &quot;errorCount&quot;: 0,
+    &quot;warningCount&quot;: 0
+}
+</code></pre>
+</div>

@@ -1,5 +1,4 @@
 var fs = require('fs')
-var Remarkable = require('remarkable')
 var path = require('path')
 var restify = require('restify')
 var standard = require('standard')
@@ -21,10 +20,8 @@ Object.keys(stdPkg.dependencies).forEach(function (dep) {
   versions[dep] = require(`${dep}/package.json`).version
 })
 
-var md = new Remarkable({ html: true })
-
-var indexPath = path.join(__dirname, 'index.md')
-var index = md.render(fs.readFileSync(indexPath, 'utf8'), { sanitize: false })
+var indexPath = path.join(__dirname, 'index.html')
+var index = fs.readFileSync(indexPath, 'utf8')
 
 module.exports = createServer
 
