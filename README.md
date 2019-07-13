@@ -5,8 +5,8 @@
 [![travis][travis-image]][travis-url]
 [![standard][standard-image]][standard-url]
 
-[travis-image]: https://img.shields.io/travis/Flet/standardizer.svg?style=flat-square
-[travis-url]: https://travis-ci.org/Flet/standardizer
+[travis-image]: https://img.shields.io/travis/standard/standardizer.svg?style=flat-square
+[travis-url]: https://travis-ci.org/standard/standardizer
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
 
