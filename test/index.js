@@ -11,7 +11,7 @@ var client
 test('setup server and client', function (t) {
   portfinder.getPort((err, port) => {
     t.error(err)
-    server.listen(port, function () {
+    server.listen(port, '0.0.0.0', function () {
       client = clients.createJsonClient({
         url: server.url
       })
