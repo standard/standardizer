@@ -13,25 +13,25 @@ const cors = corsMiddleware({
 
 var stdPkg = require('standard/package.json')
 var versions = {
-  'standardizer': require('./package.json').version,
-  'standard': stdPkg.version
+  standardizer: require('./package.json').version,
+  standard: stdPkg.version
 }
 
 Object.keys(stdPkg.dependencies).forEach(function (dep) {
   versions[dep] = require(`${dep}/package.json`).version
 })
 
-var md = new Remarkable({html: true})
+var md = new Remarkable({ html: true })
 
 var indexPath = path.join(__dirname, 'index.md')
-var index = md.render(fs.readFileSync(indexPath, 'utf8'), {sanitize: false})
+var index = md.render(fs.readFileSync(indexPath, 'utf8'), { sanitize: false })
 
 module.exports = createServer
 
 function createServer () {
   var server = restify.createServer()
   server.name = 'standardizer'
-  server.use(restify.plugins.bodyParser({mapParams: true}))
+  server.use(restify.plugins.bodyParser({ mapParams: true }))
   server.pre(cors.preflight)
   server.use(cors.actual)
 
@@ -67,7 +67,7 @@ function fix (req, res, next) {
     return next(new restifyErrors.BadRequestError('text field is required.'))
   }
 
-  standard.lintText(req.body.text, {fix: true}, (err, result) => {
+  standard.lintText(req.body.text, { fix: true }, (err, result) => {
     if (err) return next(err)
 
     res.send(result)
