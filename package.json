@@ -8,9 +8,9 @@
   },
   "devDependencies": {
     "portfinder": "^1.0.7",
-    "restify-clients": "^1.5.2",
-    "standard": "*",
-    "tap-spec": "^4.1.1",
+    "restify-clients": "^2.6.6",
+    "standard": "^13.0.2",
+    "tap-spec": "^5.0.0",
     "tape": "^4.6.0"
   },
   "homepage": "https://github.com/Flet/standardizer",
@@ -26,10 +26,9 @@
     "test": "tape test/*.js | tap-spec && standard"
   },
   "dependencies": {
-    "remarkable": "^1.6.2",
+    "remarkable": "^1.7.1",
     "restify": "^6.0.1",
     "restify-cors-middleware": "^1.0.1",
-    "restify-errors": "^5.0.0",
-    "standard": "^10.0.3"
+    "restify-errors": "^5.0.0"
   }
 }
