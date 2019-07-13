@@ -26,8 +26,8 @@
     "test": "tape test/*.js | tap-spec && standard"
   },
   "dependencies": {
-    "restify": "^6.0.1",
+    "restify": "^8.3.3",
     "restify-cors-middleware": "^1.0.1",
-    "restify-errors": "^5.0.0"
+    "restify-errors": "^8.0.0"
   }
 }
