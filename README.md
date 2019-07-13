@@ -1,5 +1,7 @@
 # standardizer
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/standard/standardizer.svg)](https://greenkeeper.io/)
+
 [![travis][travis-image]][travis-url]
 [![standard][standard-image]][standard-url]
 
