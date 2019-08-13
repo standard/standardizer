@@ -6,6 +6,11 @@
   "bugs": {
     "url": "https://github.com/Flet/standardizer/issues"
   },
+  "dependencies": {
+    "restify": "^8.3.3",
+    "restify-cors-middleware": "^1.0.1",
+    "restify-errors": "^8.0.0"
+  },
   "devDependencies": {
     "portfinder": "^1.0.7",
     "restify-clients": "^2.6.6",
@@ -23,10 +28,5 @@
   "scripts": {
     "start": "node index.js",
     "test": "standard && tape test/*.js"
-  },
-  "dependencies": {
-    "restify": "^8.3.3",
-    "restify-cors-middleware": "^1.0.1",
-    "restify-errors": "^8.0.0"
   }
 }
