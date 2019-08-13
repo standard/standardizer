@@ -23,7 +23,7 @@ A tiny service to lint and format JavaScript code using JavaScript Standard Styl
 <form method="get" action="/version">
 <input type="submit" value="Try GET /version">
 </form>
-<p><strong>GET https://<script>document.write(window.location.hostname)</script>/version</strong></p>
+<p><strong>GET https://<span class='host'></span>/version</strong></p>
 <p>Response:</p>
 <pre><code class="language-js">{&quot;version&quot;:&quot;1.0.0&quot;,&quot;standard&quot;:&quot;10.0.3&quot;}
 </code></pre>
@@ -35,7 +35,7 @@ console.log('woot');
 </textarea>
 <input type="submit" value="Try POST /lint">
 </form>
-<p><strong>POST https://<script>document.write(window.location.hostname)</script>/lint</strong></p>
+<p><strong>POST https://<span class='host'></span>/lint</strong></p>
 <p>Payload:</p>
 <pre><code class="language-js">{ &quot;text&quot;: &quot;console.log('woot');\n&quot;}
 </code></pre>
@@ -97,3 +97,10 @@ console.log('hello');
 }
 </code></pre>
 </div>
+<script>
+  const host = window.location.host
+  Array.from(document.querySelectorAll('.host'))
+    .forEach(elem => {
+      elem.textContent = host
+    })
+</script>
