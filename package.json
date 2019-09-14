@@ -14,7 +14,7 @@
   "devDependencies": {
     "portfinder": "^1.0.7",
     "restify-clients": "^2.6.6",
-    "standard": "*",
+    "standard": ">=14.3.0",
     "tape": "^4.6.0"
   },
   "homepage": "https://github.com/Flet/standardizer",
