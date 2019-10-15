@@ -12,7 +12,7 @@
     "restify-errors": "^8.0.0"
   },
   "devDependencies": {
-    "portfinder": "^1.0.7",
+    "portfinder": "^1.0.25",
     "restify-clients": "^2.6.6",
     "standard": "*",
     "tape": "^4.6.0"
