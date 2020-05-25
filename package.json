@@ -15,7 +15,7 @@
     "portfinder": "^1.0.7",
     "restify-clients": "^2.6.6",
     "standard": "*",
-    "tape": "^4.6.0"
+    "tape": "^5.0.1"
   },
   "homepage": "https://github.com/Flet/standardizer",
   "keywords": [],
