@@ -7,15 +7,15 @@
     "url": "https://github.com/Flet/standardizer/issues"
   },
   "dependencies": {
-    "restify": "^8.3.3",
-    "restify-cors-middleware": "^1.0.1",
-    "restify-errors": "^8.0.0"
+    "restify": "^8.5.1",
+    "restify-cors-middleware": "^1.1.1",
+    "restify-errors": "^8.0.2"
   },
   "devDependencies": {
-    "portfinder": "^1.0.7",
-    "restify-clients": "^2.6.6",
+    "portfinder": "^1.0.28",
+    "restify-clients": "^4.0.0",
     "standard": "*",
-    "tape": "^5.0.0"
+    "tape": "^5.0.1"
   },
   "homepage": "https://github.com/Flet/standardizer",
   "keywords": [],
