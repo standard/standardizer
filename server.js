@@ -1,8 +1,8 @@
-var fs = require('fs')
-var path = require('path')
-var restify = require('restify')
-var standard = require('standard')
-var restifyErrors = require('restify-errors')
+const fs = require('fs')
+const path = require('path')
+const restify = require('restify')
+const standard = require('standard')
+const restifyErrors = require('restify-errors')
 
 const corsMiddleware = require('restify-cors-middleware')
 
@@ -10,8 +10,8 @@ const cors = corsMiddleware({
   origins: ['*']
 })
 
-var stdPkg = require('standard/package.json')
-var versions = {
+const stdPkg = require('standard/package.json')
+const versions = {
   standardizer: require('./package.json').version,
   standard: stdPkg.version
 }
@@ -20,13 +20,13 @@ Object.keys(stdPkg.dependencies).forEach(function (dep) {
   versions[dep] = require(`${dep}/package.json`).version
 })
 
-var indexPath = path.join(__dirname, 'index.html')
-var index = fs.readFileSync(indexPath, 'utf8')
+const indexPath = path.join(__dirname, 'index.html')
+const index = fs.readFileSync(indexPath, 'utf8')
 
 module.exports = createServer
 
 function createServer () {
-  var server = restify.createServer()
+  const server = restify.createServer()
   server.name = 'standardizer'
   server.use(restify.plugins.bodyParser({ mapParams: true }))
   server.pre(cors.preflight)

@@ -1,12 +1,12 @@
-var portfinder = require('portfinder')
+const portfinder = require('portfinder')
 
-var clients = require('restify-clients')
+const clients = require('restify-clients')
 
-var createServer = require('../server.js')
-var test = require('tape')
+const createServer = require('../server.js')
+const test = require('tape')
 
-var server = createServer()
-var client
+const server = createServer()
+let client
 
 test('setup server and client', function (t) {
   portfinder.getPort((err, port) => {
