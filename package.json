@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "author": "Dan Flettre <flettre@gmail.com>",
   "bugs": {
-    "url": "https://github.com/Flet/standardizer/issues"
+    "url": "https://github.com/standard/standardizer/issues"
   },
   "dependencies": {
     "restify": "^8.5.1",
@@ -13,17 +13,20 @@
   },
   "devDependencies": {
     "portfinder": "^1.0.28",
-    "restify-clients": "^4.0.0",
+    "restify-clients": "^3.1.0",
     "standard": "^16.0.0",
     "tape": "^5.0.1"
   },
-  "homepage": "https://github.com/Flet/standardizer",
+  "engines": {
+    "node": "16.x"
+  },
+  "homepage": "https://github.com/standard/standardizer",
   "keywords": [],
   "license": "ISC",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Flet/standardizer.git"
+    "url": "https://github.com/standard/standardizer.git"
   },
   "scripts": {
     "start": "node index.js",
