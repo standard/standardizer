@@ -7,7 +7,8 @@ const restifyErrors = require('restify-errors')
 const corsMiddleware = require('restify-cors-middleware')
 
 const cors = corsMiddleware({
-  origins: ['*']
+  origins: ['*'],
+  allowHeaders: ['user-agent']
 })
 
 const stdPkg = require('standard/package.json')
