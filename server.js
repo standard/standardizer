@@ -4,7 +4,7 @@ const restify = require('restify')
 const standard = require('standard')
 const restifyErrors = require('restify-errors')
 
-const corsMiddleware = require('restify-cors-middleware')
+const corsMiddleware = require('restify-cors-middleware2')
 
 const cors = corsMiddleware({
   origins: ['*'],

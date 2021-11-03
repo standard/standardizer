@@ -7,8 +7,8 @@
     "url": "https://github.com/standard/standardizer/issues"
   },
   "dependencies": {
-    "restify": "^8.5.1",
-    "restify-cors-middleware": "^1.1.1",
+    "restify": "^8.6.0",
+    "restify-cors-middleware2": "^2.1.2",
     "restify-errors": "^8.0.2"
   },
   "devDependencies": {
