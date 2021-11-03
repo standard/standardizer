@@ -33,4 +33,4 @@ jobs:
       - name: Deploy to standardizer.glitch.me
         env:
           GLITCHEROO_GIT_URL: ${{ secrets.GLITCHEROO_GIT_URL }}
-        run: npx glitcharoo deploy
+        run: npx glitcheroo deploy
