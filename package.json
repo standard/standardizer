@@ -6,6 +6,7 @@
   "bugs": {
     "url": "https://github.com/standard/standardizer/issues"
   },
+  "type": "module",
   "dependencies": {
     "restify": "^8.6.0",
     "restify-cors-middleware2": "^2.1.2",
@@ -14,7 +15,7 @@
   "devDependencies": {
     "portfinder": "^1.0.28",
     "restify-clients": "^3.1.0",
-    "standard": "^16.0.0",
+    "standard": "^17.0.0",
     "tape": "^5.0.1"
   },
   "engines": {

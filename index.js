@@ -1,4 +1,4 @@
-const createServer = require('./server.js')
+import { createServer } from './server.js'
 
 const server = createServer()
 
