@@ -1,9 +1,7 @@
-const portfinder = require('portfinder')
-
-const clients = require('restify-clients')
-
-const createServer = require('../server.js')
-const test = require('tape')
+import portfinder from 'portfinder'
+import clients from 'restify-clients'
+import { createServer } from '../server.js'
+import test from 'tape'
 
 const server = createServer()
 let client
@@ -35,8 +33,16 @@ test('get version info', (t) => {
 test('lint some text', (t) => {
   client.post('/lint', { text: "console.log('woot');\n" }, (err, req, res, obj) => {
     t.error(err, 'no error')
-    t.equals(obj.errorCount, 1, 'successfully linted')
-    t.equals(obj.results[0].messages[0].message, 'Extra semicolon.', 'correct lint message')
+    t.equals(obj[0].errorCount, 1, 'successfully linted')
+    t.equals(obj[0].messages[0].message, 'Extra semicolon.', 'correct lint message')
+    t.end()
+  })
+})
+
+test('fix some text', (t) => {
+  client.post('/fix', { text: "console.log('woot');\n" }, (err, req, res, obj) => {
+    t.error(err, 'no error')
+    t.equals(obj[0].output, "console.log('woot')\n", 'correct fix output')
     t.end()
   })
 })

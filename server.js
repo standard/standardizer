@@ -1,32 +1,33 @@
-const fs = require('fs')
-const path = require('path')
-const restify = require('restify')
-const standard = require('standard')
-const restifyErrors = require('restify-errors')
+import { readFileSync } from 'fs'
 
-const corsMiddleware = require('restify-cors-middleware2')
+import restify from 'restify'
+import standard from 'standard'
+import restifyErrors from 'restify-errors'
+
+import corsMiddleware from 'restify-cors-middleware2'
 
 const cors = corsMiddleware({
   origins: ['*'],
   allowHeaders: ['user-agent']
 })
 
-const stdPkg = require('standard/package.json')
+const stdPkg = JSON.parse(readFileSync('./node_modules/standard/package.json'))
+
+const pkg = JSON.parse(readFileSync('./package.json'))
+
 const versions = {
-  standardizer: require('./package.json').version,
+  standardizer: pkg.version,
   standard: stdPkg.version
 }
 
-Object.keys(stdPkg.dependencies).forEach(function (dep) {
-  versions[dep] = require(`${dep}/package.json`).version
-})
+for (const dep of Object.keys(stdPkg.dependencies)) {
+  const depPkg = JSON.parse(readFileSync(`./node_modules/${dep}/package.json`))
 
-const indexPath = path.join(__dirname, 'index.html')
-const index = fs.readFileSync(indexPath, 'utf8')
+  versions[dep] = depPkg.version
+}
+const index = await readFileSync('./index.html')
 
-module.exports = createServer
-
-function createServer () {
+export function createServer () {
   const server = restify.createServer()
   server.name = 'standardizer'
   server.use(restify.plugins.bodyParser({ mapParams: true }))
@@ -47,30 +48,32 @@ function version (req, res, next) {
   next()
 }
 
-function lint (req, res, next) {
+async function lint (req, res, next) {
   if (!req.body || !req.body.text) {
     return next(new restifyErrors.BadRequestError('text field is required.'))
   }
 
-  standard.lintText(req.body.text, (err, result) => {
-    if (err) return next(err)
-
+  try {
+    const result = await standard.lintText(req.body.text)
     res.send(result)
     next()
-  })
+  } catch (err) {
+    return next(err)
+  }
 }
 
-function fix (req, res, next) {
+async function fix (req, res, next) {
   if (!req.body || !req.body.text) {
     return next(new restifyErrors.BadRequestError('text field is required.'))
   }
 
-  standard.lintText(req.body.text, { fix: true }, (err, result) => {
-    if (err) return next(err)
-
+  try {
+    const result = await standard.lintText(req.body.text, { fix: true })
     res.send(result)
     next()
-  })
+  } catch (err) {
+    return next(err)
+  }
 }
 
 function sendIndex (req, res, next) {
